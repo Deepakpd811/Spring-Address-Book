@@ -9,11 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/addressbook")
@@ -27,7 +23,7 @@ public class AddressBookController {
         this.contactService = contactService;
     }
 
-
+    // Get all contact
     @GetMapping
     public ResponseEntity<ApiResponse<List<Contact>>> getGreetAll() {
         try {
@@ -59,9 +55,9 @@ public class AddressBookController {
         }
     }
 
-
+    // create a contact
     @PostMapping("/create")
-    public ResponseEntity<ApiResponse<Contact>> postGreet(@RequestBody ContactDto dto) {
+    public ResponseEntity<ApiResponse<Contact>> postContact(@RequestBody ContactDto dto) {
 
         try {
             // Create the contact via service
@@ -86,7 +82,106 @@ public class AddressBookController {
         }
 
 
+    }
 
+    // Get a contact by id
+    @GetMapping("/{id}")
+    public ResponseEntity<ApiResponse<Contact>> getContactById(@PathVariable int id) {
+
+        try {
+            Optional<Contact> list = contactService.getContactById(id);
+
+            if (list.isEmpty()) {
+                ApiResponse<Contact> api = new ApiResponse<>(
+                        "error",
+                        "List is empty",
+                        list.get()
+                );
+                return new ResponseEntity<>(api, HttpStatus.NOT_FOUND);
+            }
+
+            ApiResponse<Contact> api = new ApiResponse<>(
+                    "success",
+                    "Contacts retrieved successfully",
+                    list.get()
+            );
+            return new ResponseEntity<>(api, HttpStatus.OK);
+
+        } catch (Exception e) {
+            ApiResponse<Contact> api = new ApiResponse<>(
+                    "error",
+                    "Internal Server Error",
+                    null
+            );
+            return new ResponseEntity<>(api, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+
+    // Update a contact by id
+    @PutMapping("/update/{id}")
+    public ResponseEntity<ApiResponse<Contact>> updateContactById(@PathVariable int id, @RequestBody ContactDto dto) {
+
+        try {
+            Optional<Contact> list = contactService.updateContact(id, dto);
+
+            if (list.isEmpty()) {
+                ApiResponse<Contact> api = new ApiResponse<>(
+                        "error",
+                        "Id not found",
+                        null
+                );
+                return new ResponseEntity<>(api, HttpStatus.NOT_FOUND);
+            }
+
+            ApiResponse<Contact> api = new ApiResponse<>(
+                    "success",
+                    "Contacts Update successfully",
+                    list.get()
+            );
+            return new ResponseEntity<>(api, HttpStatus.OK);
+
+        } catch (Exception e) {
+            ApiResponse<Contact> api = new ApiResponse<>(
+                    "error",
+                    "Internal Server Error",
+                    null
+            );
+            return new ResponseEntity<>(api, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+
+    }
+
+    //Delete contact by id
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<ApiResponse<Void>> deleteContactById(@PathVariable int id) {
+        try {
+            boolean isDeleted = contactService.deleteContact(id);
+
+            if (isDeleted) {
+                ApiResponse<Void> api = new ApiResponse<>(
+                        "success",
+                        "Contact deleted successfully",
+                        null
+                );
+                return new ResponseEntity<>(api, HttpStatus.OK);
+            } else {
+                ApiResponse<Void> api = new ApiResponse<>(
+                        "error",
+                        "Contact with given ID not found",
+                        null
+                );
+                return new ResponseEntity<>(api, HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            ApiResponse<Void> api = new ApiResponse<>(
+                    "error",
+                    "Internal Server Error",
+                    null
+            );
+            return new ResponseEntity<>(api, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
