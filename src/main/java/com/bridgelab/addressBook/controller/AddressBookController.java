@@ -1,10 +1,15 @@
 package com.bridgelab.addressBook.controller;
 
+import com.bridgelab.addressBook.dto.ApiResponse;
 import com.bridgelab.addressBook.dto.ContactDto;
 import com.bridgelab.addressBook.model.Contact;
+import com.bridgelab.addressBook.service.ContactService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,45 +19,75 @@ import java.util.Map;
 @RequestMapping("/addressbook")
 public class AddressBookController {
 
-    Map<String, String> response = new HashMap<>();
+
+    private ContactService contactService;
+
+    @Autowired
+    public AddressBookController(ContactService contactService) {
+        this.contactService = contactService;
+    }
+
 
     @GetMapping
-    public List<Contact> getGreet() {
+    public ResponseEntity<ApiResponse<List<Contact>>> getGreetAll() {
+        try {
+            List<Contact> list = contactService.getAllContact();
 
-        List<Contact> list = new ArrayList<>();
+            if (list.isEmpty()) {
+                ApiResponse<List<Contact>> api = new ApiResponse<>(
+                        "error",
+                        "List is empty",
+                        list
+                );
+                return new ResponseEntity<>(api, HttpStatus.NOT_FOUND);
+            }
 
-        Contact con1 = new Contact(10,"deepak","prasad",
-                "xyz street","rajpura", "punjab",
-                "123484","987648272"
-                ,"deepak@gmail.com"
-        );Contact con2 = new Contact(10,"deepak","prasad",
-                "xyz street","rajpura", "punjab",
-                "123484","987648272"
-                ,"deepak@gmail.com"
-        );
-        list.add(con1);
-        list.add(con2);
-        return list;
+            ApiResponse<List<Contact>> api = new ApiResponse<>(
+                    "success",
+                    "Contacts retrieved successfully",
+                    list
+            );
+            return new ResponseEntity<>(api, HttpStatus.OK);
+
+        } catch (Exception e) {
+            ApiResponse<List<Contact>> api = new ApiResponse<>(
+                    "error",
+                    "Internal Server Error",
+                    null
+            );
+            return new ResponseEntity<>(api, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
+
 
     @PostMapping("/create")
-    public Map<String, String> postGreet(@RequestBody ContactDto dto) {
+    public ResponseEntity<ApiResponse<Contact>> postGreet(@RequestBody ContactDto dto) {
 
-        Contact contact = new Contact();
-        contact.setFirstName(dto.getFirstName());
-        contact.setLastName(dto.getLastName());
-        contact.setAddress(dto.getAddress());
-        contact.setCity(dto.getCity());
-        contact.setState(dto.getState());
-        contact.setZip(dto.getZip());
-        contact.setPhoneNumber(dto.getPhoneNumber());
-        contact.setEmail(dto.getEmail());
+        try {
+            // Create the contact via service
+            Contact createdContact = contactService.createContact(dto);
+
+            // Build success response
+            ApiResponse<Contact> apiResponse = new ApiResponse<>(
+                    "success",
+                    "Contact created successfully",
+                    createdContact
+            );
+
+            return new ResponseEntity<>(apiResponse, HttpStatus.CREATED);
+
+        } catch (Exception e) {
+            ApiResponse<Contact> api = new ApiResponse<>(
+                    "error",
+                    "Internal Server Error",
+                    null
+            );
+            return new ResponseEntity<>(api, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
 
 
-        response.put("Message ", "Contact created");
-        return response;
+
     }
-
 
 
 }
