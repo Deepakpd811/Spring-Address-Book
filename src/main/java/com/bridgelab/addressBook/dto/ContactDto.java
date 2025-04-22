@@ -24,6 +24,8 @@ public class ContactDto {
     private String city;
     private String state;
     private String zip;
+
+    @Pattern(regexp = "^\\d{10}$", message = "Phone number must be 10 digits")
     private String phoneNumber;
 
     @Email(message = "Invalid email format")
