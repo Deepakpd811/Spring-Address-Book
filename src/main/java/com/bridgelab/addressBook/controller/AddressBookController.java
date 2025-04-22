@@ -11,186 +11,85 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RestController
 @RequestMapping("/addressbook")
 public class AddressBookController {
 
-
-    private ContactService contactService;
+    private final ContactService contactService;
 
     @Autowired
     public AddressBookController(ContactService contactService) {
         this.contactService = contactService;
     }
 
-    // Get all contact
+    // Get all contacts
     @GetMapping
-    public ResponseEntity<ApiResponse<List<Contact>>> getGreetAll() {
-        log.info("Fetching all Contacts");
-        try {
-            List<Contact> list = contactService.getAllContact();
-
-            if (list.isEmpty()) {
-                log.warn("No Contact found");
-                ApiResponse<List<Contact>> api = new ApiResponse<>(
-                        "error",
-                        "List is empty",
-                        list
-                );
-                return new ResponseEntity<>(api, HttpStatus.NOT_FOUND);
-            }
-
-            log.info("Retriveing all contact successfully count:{}", list.size());
-
-            ApiResponse<List<Contact>> api = new ApiResponse<>(
-                    "success",
-                    "Contacts retrieved successfully",
-                    list
-            );
-            return new ResponseEntity<>(api, HttpStatus.OK);
-
-        } catch (Exception e) {
-            log.error("Error while fetching ");
-            ApiResponse<List<Contact>> api = new ApiResponse<>(
-                    "error",
-                    "Internal Server Error",
-                    null
-            );
-            return new ResponseEntity<>(api, HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<ApiResponse<List<Contact>>> getAllContacts() {
+        log.info("Fetching all contacts");
+        List<Contact> contacts = contactService.getAllContact();
+        if (contacts.isEmpty()) {
+            return buildErrorResponse("No contacts found", HttpStatus.NOT_FOUND);
         }
+        return buildSuccessResponse("Contacts retrieved successfully", contacts, HttpStatus.OK);
     }
 
-    // create a contact
+    // Create a new contact
     @PostMapping("/create")
-    public ResponseEntity<ApiResponse<Contact>> postContact(@Valid @RequestBody ContactDto dto) {
-
-        try {
-            // Create the contact via service
-            Contact createdContact = contactService.createContact(dto);
-
-            // Build success response
-            ApiResponse<Contact> apiResponse = new ApiResponse<>(
-                    "success",
-                    "Contact created successfully",
-                    createdContact
-            );
-
-            return new ResponseEntity<>(apiResponse, HttpStatus.CREATED);
-
-        } catch (Exception e) {
-            ApiResponse<Contact> api = new ApiResponse<>(
-                    "error",
-                    "Internal Server Error",
-                    null
-            );
-            return new ResponseEntity<>(api, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-
+    public ResponseEntity<ApiResponse<Contact>> createContact(@Valid @RequestBody ContactDto dto) {
+        log.info("Creating a new contact");
+        Contact createdContact = contactService.createContact(dto);
+        return buildSuccessResponse("Contact created successfully", createdContact, HttpStatus.CREATED);
     }
 
-    // Get a contact by id
+    // Get a contact by ID
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<Contact>> getContactById(@PathVariable int id) {
-
-        try {
-            Optional<Contact> list = contactService.getContactById(id);
-
-            if (list.isEmpty()) {
-                ApiResponse<Contact> api = new ApiResponse<>(
-                        "error",
-                        "List is empty",
-                        list.get()
-                );
-                return new ResponseEntity<>(api, HttpStatus.NOT_FOUND);
-            }
-
-            ApiResponse<Contact> api = new ApiResponse<>(
-                    "success",
-                    "Contacts retrieved successfully",
-                    list.get()
-            );
-            return new ResponseEntity<>(api, HttpStatus.OK);
-
-        } catch (Exception e) {
-            ApiResponse<Contact> api = new ApiResponse<>(
-                    "error",
-                    "Internal Server Error",
-                    null
-            );
-            return new ResponseEntity<>(api, HttpStatus.INTERNAL_SERVER_ERROR);
+        log.info("Fetching contact by ID: {}", id);
+        Optional<Contact> contact = contactService.getContactById(id);
+        if (contact.isPresent()) {
+            return buildSuccessResponse("Contact retrieved successfully", contact.get(), HttpStatus.OK);
+        } else {
+            return buildErrorResponse("Contact with ID " + id + " not found", HttpStatus.NOT_FOUND);
         }
-
     }
 
-    // Update a contact by id
+    // Update a contact by ID
     @PutMapping("/update/{id}")
-    public ResponseEntity<ApiResponse<Contact>> updateContactById(@PathVariable int id,@Valid @RequestBody ContactDto dto) {
-
-        try {
-            Optional<Contact> list = contactService.updateContact(id, dto);
-
-            if (list.isEmpty()) {
-                ApiResponse<Contact> api = new ApiResponse<>(
-                        "error",
-                        "Id not found",
-                        null
-                );
-                return new ResponseEntity<>(api, HttpStatus.NOT_FOUND);
-            }
-
-            ApiResponse<Contact> api = new ApiResponse<>(
-                    "success",
-                    "Contacts Update successfully",
-                    list.get()
-            );
-            return new ResponseEntity<>(api, HttpStatus.OK);
-
-        } catch (Exception e) {
-            ApiResponse<Contact> api = new ApiResponse<>(
-                    "error",
-                    "Internal Server Error",
-                    null
-            );
-            return new ResponseEntity<>(api, HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<ApiResponse<Contact>> updateContact(@PathVariable int id, @Valid @RequestBody ContactDto dto) {
+        log.info("Updating contact with ID: {}", id);
+        Optional<Contact> updatedContact = contactService.updateContact(id, dto);
+        if (updatedContact.isPresent()) {
+            return buildSuccessResponse("Contact updated successfully", updatedContact.get(), HttpStatus.OK);
+        } else {
+            return buildErrorResponse("Contact with ID " + id + " not found", HttpStatus.NOT_FOUND);
         }
-
-
     }
 
-    //Delete contact by id
+    // Delete a contact by ID
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<ApiResponse<Void>> deleteContactById(@PathVariable int id) {
-        try {
-            boolean isDeleted = contactService.deleteContact(id);
-
-            if (isDeleted) {
-                ApiResponse<Void> api = new ApiResponse<>(
-                        "success",
-                        "Contact deleted successfully",
-                        null
-                );
-                return new ResponseEntity<>(api, HttpStatus.OK);
-            } else {
-                ApiResponse<Void> api = new ApiResponse<>(
-                        "error",
-                        "Contact with given ID not found",
-                        null
-                );
-                return new ResponseEntity<>(api, HttpStatus.NOT_FOUND);
-            }
-        } catch (Exception e) {
-            ApiResponse<Void> api = new ApiResponse<>(
-                    "error",
-                    "Internal Server Error",
-                    null
-            );
-            return new ResponseEntity<>(api, HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<ApiResponse<Void>> deleteContact(@PathVariable int id) {
+        log.info("Deleting contact with ID: {}", id);
+        boolean isDeleted = contactService.deleteContact(id);
+        if (isDeleted) {
+            return buildSuccessResponse("Contact deleted successfully", null, HttpStatus.OK);
+        } else {
+            return buildErrorResponse("Contact with ID " + id + " not found", HttpStatus.NOT_FOUND);
         }
     }
 
+    // Helper method to create success response
+    private <T> ResponseEntity<ApiResponse<T>> buildSuccessResponse(String message, T data, HttpStatus status) {
+        ApiResponse<T> response = new ApiResponse<>("success", message, data);
+        return new ResponseEntity<>(response, status);
+    }
 
+    // Helper method to create error response
+    private <T> ResponseEntity<ApiResponse<T>> buildErrorResponse(String message, HttpStatus status) {
+        ApiResponse<T> response = new ApiResponse<>("error", message, null);
+        return new ResponseEntity<>(response, status);
+    }
 }
