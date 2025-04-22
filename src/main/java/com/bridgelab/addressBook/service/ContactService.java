@@ -47,6 +47,7 @@ public class ContactService {
     public Optional<Contact> updateContact(int id, ContactDto dto) {
 
         Optional<Contact> contact = contactRepository.findById(id);
+        System.out.println(dto);
 
         if (contact.isPresent()) {
 
