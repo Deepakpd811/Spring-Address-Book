@@ -1,0 +1,86 @@
+2025-04-22T11:46:30.509+05:30  WARN 8620 --- [addressBook] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-22T11:47:03.609+05:30  WARN 17108 --- [addressBook] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-22T11:50:39.430+05:30  INFO 10428 --- [addressBook] [main] c.b.addressBook.AddressBookApplication   : Starting AddressBookApplication using Java 21.0.1 with PID 10428 (D:\Bridgelab\Bridgelab_workSpace\SpringBoot\addressBook\target\classes started by prasa in D:\Bridgelab\Bridgelab_workSpace\SpringBoot\addressBook)
+2025-04-22T11:50:39.444+05:30 DEBUG 10428 --- [addressBook] [main] c.b.addressBook.AddressBookApplication   : Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22T11:50:39.446+05:30  INFO 10428 --- [addressBook] [main] c.b.addressBook.AddressBookApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-04-22T11:50:44.279+05:30  WARN 10428 --- [addressBook] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-22T11:50:44.805+05:30  INFO 10428 --- [addressBook] [main] c.b.addressBook.AddressBookApplication   : Started AddressBookApplication in 6.136 seconds (process running for 6.706)
+2025-04-22T11:50:44.813+05:30  INFO 10428 --- [addressBook] [main] c.b.addressBook.AddressBookApplication   : Spring is running
+2025-04-22T11:50:58.594+05:30  INFO 10428 --- [addressBook] [http-nio-8080-exec-2] c.b.a.controller.AddressBookController   : Fetching all Contacts
+2025-04-22T11:50:58.817+05:30  INFO 10428 --- [addressBook] [http-nio-8080-exec-2] c.b.a.controller.AddressBookController   : Retriveing all contact successfully count:5
+2025-04-22T14:09:47.682+05:30  INFO 20268 --- [addressBook] [main] c.b.addressBook.AddressBookApplication   : Starting AddressBookApplication using Java 21.0.1 with PID 20268 (D:\Bridgelab\Bridgelab_workSpace\SpringBoot\addressBook\target\classes started by prasa in D:\Bridgelab\Bridgelab_workSpace\SpringBoot\addressBook)
+2025-04-22T14:09:47.685+05:30 DEBUG 20268 --- [addressBook] [main] c.b.addressBook.AddressBookApplication   : Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22T14:09:47.686+05:30  INFO 20268 --- [addressBook] [main] c.b.addressBook.AddressBookApplication   : The following 1 profile is active: "dev"
+2025-04-22T14:09:48.840+05:30  INFO 20268 --- [addressBook] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-22T14:09:48.975+05:30  INFO 20268 --- [addressBook] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 116 ms. Found 1 JPA repository interface.
+2025-04-22T14:09:49.726+05:30  INFO 20268 --- [addressBook] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-04-22T14:09:49.743+05:30  INFO 20268 --- [addressBook] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-22T14:09:49.743+05:30  INFO 20268 --- [addressBook] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-22T14:09:49.804+05:30  INFO 20268 --- [addressBook] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-22T14:09:49.804+05:30  INFO 20268 --- [addressBook] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2017 ms
+2025-04-22T14:09:50.209+05:30  INFO 20268 --- [addressBook] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-22T14:09:50.300+05:30  INFO 20268 --- [addressBook] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.11.Final
+2025-04-22T14:09:50.393+05:30  INFO 20268 --- [addressBook] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-22T14:09:50.825+05:30  INFO 20268 --- [addressBook] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-22T14:09:50.870+05:30  INFO 20268 --- [addressBook] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-04-22T14:09:51.164+05:30  INFO 20268 --- [addressBook] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2b170932
+2025-04-22T14:09:51.168+05:30  INFO 20268 --- [addressBook] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-04-22T14:09:51.228+05:30  WARN 20268 --- [addressBook] [main] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.62 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2025-04-22T14:09:51.235+05:30  WARN 20268 --- [addressBook] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-22T14:09:51.275+05:30  INFO 20268 --- [addressBook] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 5.5.62
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-22T14:09:52.239+05:30  INFO 20268 --- [addressBook] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-22T14:09:52.301+05:30  INFO 20268 --- [addressBook] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-22T14:09:52.787+05:30  WARN 20268 --- [addressBook] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-22T14:09:53.556+05:30  INFO 20268 --- [addressBook] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-04-22T14:09:53.566+05:30  INFO 20268 --- [addressBook] [main] c.b.addressBook.AddressBookApplication   : Started AddressBookApplication in 6.815 seconds (process running for 7.645)
+2025-04-22T14:09:53.573+05:30  INFO 20268 --- [addressBook] [main] c.b.addressBook.AddressBookApplication   : AddressBook app is started in null Environment
+2025-04-22T14:09:55.866+05:30  INFO 20268 --- [addressBook] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-22T14:09:55.875+05:30  INFO 20268 --- [addressBook] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-04-22T14:09:55.879+05:30  INFO 20268 --- [addressBook] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-22T14:09:55.882+05:30  INFO 20268 --- [addressBook] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-04-22T14:09:55.893+05:30  INFO 20268 --- [addressBook] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-04-22T14:10:00.012+05:30  INFO 12128 --- [addressBook] [main] c.b.addressBook.AddressBookApplication   : Starting AddressBookApplication using Java 21.0.1 with PID 12128 (D:\Bridgelab\Bridgelab_workSpace\SpringBoot\addressBook\target\classes started by prasa in D:\Bridgelab\Bridgelab_workSpace\SpringBoot\addressBook)
+2025-04-22T14:10:00.017+05:30 DEBUG 12128 --- [addressBook] [main] c.b.addressBook.AddressBookApplication   : Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-22T14:10:00.017+05:30  INFO 12128 --- [addressBook] [main] c.b.addressBook.AddressBookApplication   : The following 1 profile is active: "dev"
+2025-04-22T14:10:01.277+05:30  INFO 12128 --- [addressBook] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-22T14:10:01.375+05:30  INFO 12128 --- [addressBook] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 78 ms. Found 1 JPA repository interface.
+2025-04-22T14:10:02.046+05:30  INFO 12128 --- [addressBook] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-04-22T14:10:02.061+05:30  INFO 12128 --- [addressBook] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-22T14:10:02.061+05:30  INFO 12128 --- [addressBook] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-22T14:10:02.125+05:30  INFO 12128 --- [addressBook] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-22T14:10:02.126+05:30  INFO 12128 --- [addressBook] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2002 ms
+2025-04-22T14:10:02.451+05:30  INFO 12128 --- [addressBook] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-22T14:10:02.522+05:30  INFO 12128 --- [addressBook] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.11.Final
+2025-04-22T14:10:02.558+05:30  INFO 12128 --- [addressBook] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-22T14:10:02.845+05:30  INFO 12128 --- [addressBook] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-22T14:10:02.900+05:30  INFO 12128 --- [addressBook] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-04-22T14:10:03.098+05:30  INFO 12128 --- [addressBook] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@49ced9c7
+2025-04-22T14:10:03.101+05:30  INFO 12128 --- [addressBook] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-04-22T14:10:03.148+05:30  WARN 12128 --- [addressBook] [main] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.62 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2025-04-22T14:10:03.154+05:30  WARN 12128 --- [addressBook] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-22T14:10:03.187+05:30  INFO 12128 --- [addressBook] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 5.5.62
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-22T14:10:03.913+05:30  INFO 12128 --- [addressBook] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-22T14:10:03.964+05:30  INFO 12128 --- [addressBook] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-22T14:10:04.343+05:30  WARN 12128 --- [addressBook] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-22T14:10:04.892+05:30  INFO 12128 --- [addressBook] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-04-22T14:10:04.904+05:30  INFO 12128 --- [addressBook] [main] c.b.addressBook.AddressBookApplication   : Started AddressBookApplication in 5.624 seconds (process running for 6.149)
+2025-04-22T14:10:04.912+05:30  INFO 12128 --- [addressBook] [main] c.b.addressBook.AddressBookApplication   : AddressBook app is started in dev Environment
+2025-04-22T14:10:59.252+05:30  INFO 12128 --- [addressBook] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-22T14:10:59.261+05:30  INFO 12128 --- [addressBook] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-04-22T14:10:59.266+05:30  INFO 12128 --- [addressBook] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-22T14:10:59.271+05:30  INFO 12128 --- [addressBook] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-04-22T14:10:59.287+05:30  INFO 12128 --- [addressBook] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

@@ -4,6 +4,7 @@ import com.bridgelab.addressBook.dto.ApiResponse;
 import com.bridgelab.addressBook.dto.ContactDto;
 import com.bridgelab.addressBook.model.Contact;
 import com.bridgelab.addressBook.service.ContactService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
+@Slf4j
 @RestController
 @RequestMapping("/addressbook")
 public class AddressBookController {
@@ -26,10 +28,12 @@ public class AddressBookController {
     // Get all contact
     @GetMapping
     public ResponseEntity<ApiResponse<List<Contact>>> getGreetAll() {
+        log.info("Fetching all Contacts");
         try {
             List<Contact> list = contactService.getAllContact();
 
             if (list.isEmpty()) {
+                log.warn("No Contact found");
                 ApiResponse<List<Contact>> api = new ApiResponse<>(
                         "error",
                         "List is empty",
@@ -37,6 +41,8 @@ public class AddressBookController {
                 );
                 return new ResponseEntity<>(api, HttpStatus.NOT_FOUND);
             }
+
+            log.info("Retriveing all contact successfully count:{}", list.size());
 
             ApiResponse<List<Contact>> api = new ApiResponse<>(
                     "success",
@@ -46,6 +52,7 @@ public class AddressBookController {
             return new ResponseEntity<>(api, HttpStatus.OK);
 
         } catch (Exception e) {
+            log.error("Error while fetching ");
             ApiResponse<List<Contact>> api = new ApiResponse<>(
                     "error",
                     "Internal Server Error",
