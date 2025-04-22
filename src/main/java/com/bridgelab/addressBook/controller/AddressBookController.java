@@ -4,6 +4,7 @@ import com.bridgelab.addressBook.dto.ApiResponse;
 import com.bridgelab.addressBook.dto.ContactDto;
 import com.bridgelab.addressBook.model.Contact;
 import com.bridgelab.addressBook.service.ContactService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -64,7 +65,7 @@ public class AddressBookController {
 
     // create a contact
     @PostMapping("/create")
-    public ResponseEntity<ApiResponse<Contact>> postContact(@RequestBody ContactDto dto) {
+    public ResponseEntity<ApiResponse<Contact>> postContact(@Valid @RequestBody ContactDto dto) {
 
         try {
             // Create the contact via service
@@ -127,7 +128,7 @@ public class AddressBookController {
 
     // Update a contact by id
     @PutMapping("/update/{id}")
-    public ResponseEntity<ApiResponse<Contact>> updateContactById(@PathVariable int id, @RequestBody ContactDto dto) {
+    public ResponseEntity<ApiResponse<Contact>> updateContactById(@PathVariable int id,@Valid @RequestBody ContactDto dto) {
 
         try {
             Optional<Contact> list = contactService.updateContact(id, dto);
